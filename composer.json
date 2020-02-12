@@ -1,0 +1,14 @@
+{
+    "name": "core/api",
+    "description": "Laravel Practice Test",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\Api\\": "src"
+        }
+    }
+}
