@@ -3,13 +3,21 @@
 namespace Core\Api\Console;
 
 use Carbon\Carbon;
+use Core\Api\Notifications\ProductWasPendingNotification;
 use Illuminate\Console\Command;
 use Core\Api\Models\Product;
+use Illuminate\Support\Facades\Notification;
 
 class ProductPendingCommand extends Command
 {
+    /**
+     * @inheritDoc
+     */
     protected $signature = 'products:pending';
 
+    /**
+     * @inheritDoc
+     */
     protected $description = 'List of pending products';
 
     public function handle()
@@ -23,8 +31,8 @@ class ProductPendingCommand extends Command
                         .'Status: '.$product->status.'\n'
                         .'-------------------------- \n'
             );
-            Notification::route('mail', 'taylor@example.com')
-                ->notify(new InvoicePaid($invoice));
+            Notification::route('mail', config('core-api.email'))
+                ->notify(new ProductWasPendingNotification($product));
         }
     }
 }

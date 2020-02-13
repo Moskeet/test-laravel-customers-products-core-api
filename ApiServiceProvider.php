@@ -9,7 +9,7 @@ class ApiServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/config/config.php', 'core-api');
     }
 
     public function boot()
@@ -17,6 +17,9 @@ class ApiServiceProvider extends ServiceProvider
         $this->loadFactoriesFrom(__DIR__.'/database/factories');
         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
         $this->loadRoutesFrom(__DIR__.'/routes/api.php');
+        $this->publishes([
+            __DIR__.'/config/config.php' => config_path('core-api.php'),
+        ]);
         if ($this->app->runningInConsole()) {
             $this->commands([
                 ProductPendingCommand::class,
