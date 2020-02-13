@@ -26,11 +26,11 @@ class ProductPendingCommand extends Command
         $products = Product::where('status','pending')->where('updated_at','<=',$date)->get();
         foreach($products as $product)
         {
-            $this->info('Issn: '.$product->issn.'\n'
-                        .'Name: '.$product->name.'\n'
-                        .'Status: '.$product->status.'\n'
-                        .'-------------------------- \n'
-            );
+            $this->info('Issn: '.$product->issn);
+            $this->info('Name: '.$product->name);
+            $this->info('Status: '.$product->status);
+            $this->info('------------------------');
+
             Notification::route('mail', config('core-api.email'))
                 ->notify(new ProductWasPendingNotification($product));
         }

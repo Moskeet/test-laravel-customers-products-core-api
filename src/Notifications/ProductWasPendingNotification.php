@@ -4,7 +4,7 @@ namespace Core\Api\Notifications;
 
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use JohnDoe\BlogPackage\Models\Product;
+use Core\Api\Models\Product;
 
 class ProductWasPendingNotification extends Notification
 {
@@ -34,8 +34,8 @@ class ProductWasPendingNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->line("Your post '{$this->product->name}' was pending")
+        return (new MailMessage)->from('test@example.com', 'Core\Api package')
+            ->line("Your product '{$this->product->name}' was pending")
             ->line('Thank you for using our application!');
     }
 }

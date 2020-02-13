@@ -27,6 +27,7 @@ class Customer extends Model
         'status',
     ];
 
+    protected $primaryKey = 'uuid';
     /**
      * @return Product[]|Collection
      */

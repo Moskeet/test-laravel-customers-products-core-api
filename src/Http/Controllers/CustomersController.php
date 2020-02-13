@@ -19,6 +19,10 @@ class CustomersController extends Controller
 
     }
 
+    public function create()
+    {
+        return view('api::customers.create');
+    }
     public function store(Request $request)
     {
         $request->validate([
@@ -52,7 +56,7 @@ class CustomersController extends Controller
         return response($customer,200);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $customer = Customer::find($id);
         if ($customer === null) {

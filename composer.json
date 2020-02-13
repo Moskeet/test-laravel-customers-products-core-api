@@ -6,11 +6,19 @@
     "license": "MIT",
     "require": {
         "php": "^7.0",
+        "ext-json": "*",
         "laravel/framework": "6.*"
     },
     "autoload": {
         "psr-4": {
             "Core\\Api\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Core\\Api\\ApiServiceProvider"
+            ]
         }
     }
 }

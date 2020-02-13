@@ -2,9 +2,11 @@
 
 namespace Core\Api\Http\Controllers;
 
-use Core\Api\Controllers\Controller;
+use Core\Api\Http\Controllers\Controller;
 use Core\Api\Models\Product;
+use Core\Api\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductsController extends Controller
 {
@@ -16,6 +18,12 @@ class ProductsController extends Controller
     public function show($id)
     {
         return Product::findOrFail($id);
+    }
+
+    public function create()
+    {
+        $customers = Customer::all();
+        return view('api::products.create',compact('customers'));
     }
 
     public function store(Request $request)
@@ -50,7 +58,7 @@ class ProductsController extends Controller
         return response($product,200);
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $product = Product::find($id);
         if ($product === null) {

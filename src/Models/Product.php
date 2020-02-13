@@ -22,14 +22,17 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'status','customer_id'
+        'name',
+        'status',
+        'customer_id'
     ];
 
+    protected $primaryKey = 'issn';
     /**
      * @return Customer
      */
     public function customer()
     {
-        return $this->belongsTo('Core\Api\Models\Customer');
+        return $this->belongsTo('Core\Api\Models\Customer','uuid');
     }
 }
